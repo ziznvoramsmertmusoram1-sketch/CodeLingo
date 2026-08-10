@@ -5,16 +5,13 @@ import os
 
 app = FastAPI()
 
-# Сначала раздаём статические файлы из папки webapp по пути /webapp
+# Раздаём css и js из папки webapp по пути /webapp
 if os.path.exists("webapp"):
     app.mount("/webapp", StaticFiles(directory="webapp"), name="webapp")
 
-# Главная страница корректно отдаёт index.html
+# Главная страница отдаёт index.html из корня
 @app.get("/")
 async def read_root():
-    index_path = os.path.join("webapp", "index.html")
-    if os.path.exists(index_path):
-        return FileResponse(index_path)
-    return {"message": "index.html not found in webapp folder"}
-
-
+    if os.path.exists("index.html"):
+        return FileResponse("index.html")
+    return {"message": "index.html not found"}
