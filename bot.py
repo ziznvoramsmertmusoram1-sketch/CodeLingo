@@ -14,7 +14,7 @@ GEMINI_API_KEY = "AQ.Ab8RN6LIlfOAAokOO_Mu16sY5lXwxjCBKCAv1UCxEtzxdh6kDQ"
 # Укажи свой настоящий Telegram ID (узнать в боте @userinfobot)
 OWNER_ID = 6341264728  
 
-WEBAPP_URL = "https://codelingo-3ifp.onrender.com"
+WEBAPP_URL = "https://ziznvoramsmertmusoram1-sketch.github.io/CodeLingo/"
 CHANNEL_AVATAR_URL = "https://i.imgur.com/example.jpg"
 
 genai.configure(api_key=GEMINI_API_KEY)
