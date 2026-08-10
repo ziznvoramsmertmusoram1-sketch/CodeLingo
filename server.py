@@ -1,14 +1,17 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import os
 
 app = FastAPI()
 
+# 1. Раздаём CSS и JS из папки webapp
+if os.path.exists("webapp"):
+    app.mount("/webapp", StaticFiles(directory="webapp"), name="webapp")
+
+# 2. Главный роут отдаёт index.html из корня
 @app.get("/")
 async def read_root():
-    root_files = os.listdir(".")
-    webapp_files = os.listdir("webapp") if os.path.exists("webapp") else "Папки webapp нет"
-    return {
-        "текущая_папка": os.getcwd(),
-        "файлы_в_корне": root_files,
-        "файлы_в_webapp": webapp_files
-    }
+    if os.path.exists("index.html"):
+        return FileResponse("index.html")
+    return {"message": "index.html not found"}
